@@ -574,4 +574,6 @@ def version_cmd(options):
         packages.append('c7n_kube')
     if 'openstack' in found:
         packages.append('c7n_openstack')
+    if 'ibmcloud' in found:
+        packages.append('c7n_ibmcloud')
     print(generate_requirements(packages))
