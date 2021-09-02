@@ -9,14 +9,10 @@ from c7n.filters import AgeFilter
 @resources.register('server')
 class VirtualServer(QueryResourceManager):
     class resource_type(TypeInfo):
-        enum_spec = ('search', {'query':'type:volume AND family:is'}, {'fields':['*']}, {'limit':10})
-        id = 'id'
+        enum_spec = ('search', {'query':'type:instance AND family:is'}, {'fields':['*']}, {'limit':10})
+        id = 'doc.id'
         name = 'name'
+        crn = 'doc.crn'
+        status = 'doc.status'
 
-        set_server_metadata = "set_server_metadata"
-        delete_server_metadata = "delete_server_metadata"
-        add_server_tag = "add_server_tag"
-        set_server_tag = "set_server_tag"
-        delete_server_tag = "delete_server_tag"
-
-        default_report_fields = ['id', 'name', 'status', 'tenant_id']
+        default_report_fields = ['id', 'name', 'crn', 'status']
