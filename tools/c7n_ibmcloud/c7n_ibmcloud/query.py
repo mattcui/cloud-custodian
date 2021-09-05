@@ -94,7 +94,8 @@ class QueryResourceManager(ResourceManager, metaclass=QueryMeta):
     def resources(self, query=None):
         q = query or self.get_resource_query()
         key = self.get_cache_key(q)
-        resources = self.augment(self.source.get_resources(q))
+        resources = self.augment(self.source.get_resources(q)).get_result()['items']
+
         self._cache.save(key, resources)
         return self.filter_resources(resources)
 

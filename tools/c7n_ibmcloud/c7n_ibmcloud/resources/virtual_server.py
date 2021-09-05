@@ -6,13 +6,11 @@ from c7n.filters import Filter
 from c7n.filters import AgeFilter
 
 
-@resources.register('server')
+@resources.register('virtual_server')
 class VirtualServer(QueryResourceManager):
     class resource_type(TypeInfo):
-        enum_spec = ('search', {'query':'type:instance AND family:is'}, {'fields':['*']}, {'limit':10})
-        id = 'doc.id'
-        name = 'name'
-        crn = 'doc.crn'
-        status = 'doc.status'
+        enum_spec = ('search', {'query':'type:instance AND family:is', 'fields':['*'], 'limit':10})
+        service = 'ibmcloud.vpc.instance'
+        id = 'resource_id'
 
-        default_report_fields = ['id', 'name', 'crn', 'status']
+        default_report_fields = ['doc.id', 'name', 'doc.crn', 'doc.status', 'region']

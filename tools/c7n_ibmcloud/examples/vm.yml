@@ -1,0 +1,15 @@
+policies:
+  - name: stopped-vm
+    description: |
+      Check stopped vms
+    resource: ibmcloud.virtual_server
+    filters:
+      - and:
+        - type: value
+          key: doc.status
+          value: stopped
+        - type: value
+          key: modification_date
+          op: greater-than
+          value_type: age
+          value: 0.1

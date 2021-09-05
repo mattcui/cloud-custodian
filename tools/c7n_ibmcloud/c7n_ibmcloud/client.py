@@ -27,7 +27,7 @@ global_search_service = None
 
 class Session():
     def __init__(self):
-        self.token = os.environ.get('TOKEN')
+        self.token = os.getenv('TOKEN')
 
     def client(self):
         authenticator = BearerTokenAuthenticator(self.token)
